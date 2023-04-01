@@ -12,6 +12,9 @@ module traffic_light_controller(red, yellow, red, car, clock, reset);
     S2 = 2'b10,
     S3 = 2'b11;
   
+  /* Next State Logic ---> Clock ---> Output Logic */
+  
+  /* Next State Logic */
   always @(posedge clock or posedge reset)
     begin
       if (reset)
@@ -20,6 +23,7 @@ module traffic_light_controller(red, yellow, red, car, clock, reset);
         current_state <= next_state;
     end
   
+  /* Output Logic */
   always @(car or current_state)
     begin
       red = 0; yellow = 0; green = 0; //defaults to prevent latches
